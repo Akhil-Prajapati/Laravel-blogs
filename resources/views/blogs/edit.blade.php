@@ -1,10 +1,10 @@
 <x-app-layout class="dark:bg-gray-800">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:bg-gray-800 dark:text-white leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Blogs / edit') }}
         </h2>
     </x-slot>
-<form action="{{ route('blogs.update',$blog->id) }}" method="POST">
+<form action="{{ route('blogs.update',$blog->id) }}" method="POST"  enctype="multipart/form-data">
     @csrf
     @method('put')
     <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -31,6 +31,12 @@
                 </div>
             </div>
             
+            <div>
+                @if($blog->url)
+                    <img alt="Placeholder" class="block h-48 w-48 object-contain" src="{{ $blog->url }}">
+                @endif
+                <input id="image" type="file" name="image"/>
+            </div>
             {{-- <div>
                 <label class="block text-sm font-medium text-gray-700">
                     Cover photo

@@ -17,7 +17,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = auth()->user()->blogs;
-        return view('blogs.index',['blogs' => $blogs]);
+        // $comments = $blogs->comments;
+        return view('blogs.index',['blogs' => $blogs ]);
     }
 
     /**

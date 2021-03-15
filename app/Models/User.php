@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Blog;
+use App\Models\Comments;
 
 class User extends Authenticatable
 {
@@ -47,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Blog::class);
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
 }
