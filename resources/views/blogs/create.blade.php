@@ -1,10 +1,10 @@
 <x-app-layout class="dark:bg-gray-800">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:bg-gray-800 dark:text-white leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Blogs / create') }}
         </h2>
     </x-slot>
-<form action="{{ route('blogs.store') }}" method="POST">
+<form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -14,7 +14,7 @@
                         Title
                     </label>
                     <div class="mt-1 flex rounded-md shadow-sm">
-                        <input type="text" name="title" id="company_website" class="rounded-l-md border border-r-0 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="My Blogs">
+                        <input type="text" name="title" id="company_website" class="rounded-l-md border  border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="My Blogs">
                     </div>
                 </div>
             </div>
@@ -26,6 +26,10 @@
                 <div class="mt-1">
                     <textarea id="about" name="body" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Blog"></textarea>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <input id="image" type="file" name="image">
             </div>
             
             {{-- <div>

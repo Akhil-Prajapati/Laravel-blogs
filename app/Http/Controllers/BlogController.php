@@ -40,11 +40,17 @@ class BlogController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            'body' => 'required|string'
+            'body' => 'required|string',
+            'image' => 'mimes:jpeg,png',
         ]);
+        $name = $request->image->getClientOriginalName();
+        $request->image->storeAs('/public', $name);
+        // $url = url($name);
+        $url = \Storage::url($name);
         Blog::create([
             "title" => $request->get('title'),
             "body" => $request->get('body'),
+            'url' => $url,
             "user_id" => auth()->user()->id
         ]);
 

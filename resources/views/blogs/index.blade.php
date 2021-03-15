@@ -1,16 +1,16 @@
-<x-app-layout class="dark:bg-gray-800">
+<x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:bg-gray-800 dark:text-white leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800  leading-tight">
             {{ __('Blogs') }}
         </h2>
     </x-slot>
 
-    <div class="container my-12 mx-auto px-4 md:px-12 dark:bg-gray-800">
+    <div class="container my-12 mx-auto px-4 md:px-12 ">
         <a href="{{ route('blogs.create') }}" class="inline-flex items-center h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
             <span>Create Blog</span>
             <svg class="w-4 h-4 ml-3 fill-current" viewBox="0 0 20 20"><path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
         </a>
-        <div class="flex flex-wrap -mx-1 lg:-mx-4 dark:text-white">
+        <div class="flex flex-wrap -mx-1 lg:-mx-4">
             <!-- Column -->
             @if(count($blogs) > 0)
                 @foreach ($blogs as $blog)
@@ -20,7 +20,7 @@
                         <article class="overflow-hidden rounded-lg shadow-lg">
 
                             <a href="#">
-                                <img alt="Placeholder" class="block h-auto w-full" src="https://picsum.photos/600/400/?random">
+                                <img alt="Placeholder" class="block h-auto w-full" src="{{ $blog->url }}">
                             </a>
 
                             <header class="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -73,7 +73,7 @@
                         <i class="fas fa-bell" />
                         </span>
                         <span class="inline-block align-middle mr-8">
-                        <b class="capitalize">Blogs!   </b>   There is nothing near you
+                        <b class="capitalize">Blogs!   </b>   Sorry system is blind
                         </span>
                         <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
                         <span>×</span>
