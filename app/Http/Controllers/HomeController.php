@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function show(Blog $blog)
     {
-        // $blog = Blog::find($id);
-        return view('blogs.blog',[ 'blog' => $blog ]);
+        $comments = $blog->comments()->latest()->take(5)->get();
+        return view('blogs.blog',[ 'blog' => $blog, 'comments' => $comments ]);
     }
 }

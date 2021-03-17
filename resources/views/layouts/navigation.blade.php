@@ -12,13 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('blogs.index')" :active="request()->routeIs('blogs.index')">
-                        @if (!Auth::guest())
-                            {{ __('Myblogs') }}
-                        @else
-                            {{ __('Login') }}
-                        @endif
+                    <x-nav-link :href="url('/')" :active="request()->routeIs('/')">
+                        {{ __('Blogs') }}
                     </x-nav-link>
+                    @if (!Auth::guest())
+                    <x-nav-link :href="route('blogs.index')" :active="request()->routeIs('blogs.index')">
+                            {{ __('Myblogs') }}
+                    </x-nav-link>
+                    @else
+                    <x-nav-link :href="route('blogs.index')" :active="request()->routeIs('blogs.index')">
+                            {{ __('Login') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
