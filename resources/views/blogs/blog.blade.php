@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800  leading-tight">
-            {{ __('Blog / ') }}{{ $blog->title }} 
+            <a href="/">{{ __('Blogs / ') }}</a>
+            {{ $blog->title }} 
         </h2>
     </x-slot>
     
@@ -23,16 +24,16 @@
                             <img src="https://picsum.photos/32/32/?random" class="h-9 w-9 rounded-full object-cover"
                             alt="user" />
                             <p class="block ml-2 font-bold">{{ $blog->user->name }}</p>
-                        </a>
+                        </a>   
                     </header>
-                    <div>
-                    @foreach ($comments->reverse() as $comment)
+                    <div class="overflow-y-auto md:h-28 sm:h-10 lg:h-60">
+                    @foreach ($comments as $comment)
                         <div class="pt-1">
                             <div class="text-sm mb-2 flex flex-start items-center">
                                 <div v-if="showUserImage">
                                     <a href="#" class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                         <img class="h-8 w-8 rounded-full object-cover"
-                                        src="https://picsum.photos/32/31/?random"
+                                        src="https://picsum.photos/32/28/?random"
                                         alt="user" />
                                     </a>
                                 </div>
@@ -51,19 +52,26 @@
                     @endforeach
                     </div>
                     <div class="absolute bottom-0 left-0 right-0 pl-4">
-                        <div class="pt-4">
-                            <div class="mb-2">
-                                <div class="flex items-center">
-                                    <span class="mr-3 inline-flex items-center cursor-pointer">
-                                        <svg class="text-gray-700 inline-block h-7 w-7 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <span class="text-gray-600 text-sm font-bold">Typo...</span>
+                        <div class="mb-2">
+                            <div class="flex items-center">
+                                <span class="mr-3 inline-flex items-center cursor-pointer">
+                                    <svg class="text-gray-700 inline-block h-7 w-7 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                    </svg>
+                                </span>
                             </div>
-                            <span class="block ml-2 text-xs text-gray-600">{{ $blog->created_at }}</span>
+                            <a href="{{ url('read/' . $blog->id . '?comments=' . ($limit+5)) }}">
+                                <span class="text-gray-600 text-sm font-bold">
+                                    Load more
+                                </span>
+                            </a>
+                            <a href="{{ route('blogs.comments.index',$blog->id) }}">
+                                <span class="text-gray-600 text-sm font-bold float-right">
+                                    view all
+                                </span>
+                            </a>
                         </div>
+                        <span class="block ml-2 text-xs text-gray-600">{{ $blog->created_at }}</span>
                         
                         <div class="pt-4 pb-1 pr-3">
                             <form action="{{ route('blogs.comments.store',$blog->id) }}" method="POST">
@@ -82,7 +90,7 @@
         </div>
         
         <div class="col-span-2 w-full border-2 border-gray-400  border-opacity-25 mt-5 mb-5">
-            <div class="capitalize text-2xl font-normal pl-2 leading-normal border-opacity-25 mt-0 mb-2 border-b-2 border-gray-400 ">
+            <div class="capitalize text-2xl font-normal pl-2 leading-normal mt-0 mb-2    ">
                 {{ $blog->title }}
             </div>
             <div class=" text-xl font-normal leading-normal mt-0 mb-2 text-gray-800 text-center whitespace-normal">

@@ -1,7 +1,9 @@
 <x-app-layout class="dark:bg-gray-800">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Blogs / edit') }}
+            <a href="/">{{ __('Blogs / ') }}</a>
+            <a href="/blogs">{{ 'myblogs / ' }}</a>
+            {{ ('edit') }}
         </h2>
     </x-slot>
 <form action="{{ route('blogs.update',$blog->id) }}" method="POST"  enctype="multipart/form-data">

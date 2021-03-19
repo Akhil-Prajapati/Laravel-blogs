@@ -15,9 +15,11 @@ class CommentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Blog $blog)
     {
-        
+        // dd($blog->comments()->latest()->get());
+        $comments = $blog->comments()->latest()->get();
+        return view('blogs.comments.index',['blog' => $blog, 'comments' => $comments ]);
     }
 
     /**
@@ -96,8 +98,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Blog $blog, Comment $comment)
     {
-        //
+        // dd($blog, $comment);
+        $comment->delete();
+        // Comment::find($id)->delete();
+        return redirect()->back();
     }
 }

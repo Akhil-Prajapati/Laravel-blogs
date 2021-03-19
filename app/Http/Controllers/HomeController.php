@@ -13,9 +13,10 @@ class HomeController extends Controller
         return view('blogs.home',['blogs' => $blogs ]);
     }
 
-    public function show(Blog $blog)
+    public function show(Request $request, Blog $blog)
     {
-        $comments = $blog->comments()->latest()->take(5)->get();
-        return view('blogs.blog',[ 'blog' => $blog, 'comments' => $comments ]);
+        $limit = $request->has('comments')?$request->comments:5;
+        $comments = $blog->comments()->latest()->take($limit)->get();
+        return view('blogs.blog',[ 'blog' => $blog, 'comments' => $comments, 'limit' => $limit ]);
     }
 }
