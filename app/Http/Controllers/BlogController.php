@@ -18,7 +18,7 @@ class BlogController extends Controller
     {
         $blogs = auth()->user()->blogs;
         // $comments = $blogs->comments;
-        return view('blogs.index',['blogs' => $blogs ]);
+        return view('blogs.blog.index',['blogs' => $blogs ]);
     }
 
     /**
@@ -28,7 +28,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blogs.create');
+        return view('blogs.blog.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class BlogController extends Controller
             "user_id" => auth()->user()->id
         ]);
 
-        return redirect()->route('blogs.index');
+        return redirect()->route('blogs.blog.index');
     }
 
     /**
@@ -78,7 +78,7 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::find($id);
-        return view('blogs.edit',['blog' => $blog]);
+        return view('blogs.blog.edit',['blog' => $blog]);
     }
 
     /**
@@ -101,7 +101,7 @@ class BlogController extends Controller
             "user_id" => auth()->user()->id
         ]);
 
-        return redirect()->route('blogs.index');
+        return redirect()->route('blogs.blog.index');
     }
 
     /**
@@ -113,6 +113,6 @@ class BlogController extends Controller
     public function destroy($id)
     {
         Blog::find($id)->delete();
-        return redirect()->route('blogs.index');
+        return redirect()->route('blogs.blog.index');
     }
 }
