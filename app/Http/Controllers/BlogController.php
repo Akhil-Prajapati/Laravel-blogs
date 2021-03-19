@@ -55,7 +55,7 @@ class BlogController extends Controller
             "user_id" => auth()->user()->id
         ]);
 
-        return redirect()->route('blogs.blog.index');
+        return redirect()->route('blogs.index');
     }
 
     /**
@@ -100,8 +100,8 @@ class BlogController extends Controller
             "body" => $request->get('body'),
             "user_id" => auth()->user()->id
         ]);
-
-        return redirect()->route('blogs.blog.index');
+        $blogs = auth()->user()->blogs;
+        return redirect()->route('blogs.index');   
     }
 
     /**
@@ -113,6 +113,6 @@ class BlogController extends Controller
     public function destroy($id)
     {
         Blog::find($id)->delete();
-        return redirect()->route('blogs.blog.index');
+        return redirect()->route('blogs.index');
     }
 }
