@@ -29,8 +29,9 @@ class Blog extends Model
         return $this->hasMany(Like::class);
     }
 
-    // public function isLiked()
-    // {
-        
-    // }
+    public function isLiked()
+    {
+        $result = $this->likes()->where('blog_id', $this->id)->where('user_id', auth()->id())->exists();
+        return $result;
+    }
 }

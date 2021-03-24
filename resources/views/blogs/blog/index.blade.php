@@ -48,11 +48,9 @@
                         </a>
                             <button onclick="openModal(true)" class="no-underline text-grey-darker hover:text-red-dark text-red-600">
                                 <span>Delete</span>
-                                <i class="fa fa-heart"></i>
                             </button>
                         <a class="no-underline text-grey-darker hover:text-red-dark flote-left" href="{{ route('blogs.edit',  $blog->id ) }}">
                             <span>Edit</span>
-                            <i class="fa fa-heart"></i>
                         </a>
                     </footer>
                     

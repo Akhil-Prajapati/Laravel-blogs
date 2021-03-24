@@ -4,7 +4,6 @@
             <a href="/">{{ __('Blogs / ') }}</a>
             {{ $blog->title }} 
         </h2>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </x-slot>
     
     <div class="container my-12 mx-auto px-4 md:px-12">
@@ -81,14 +80,15 @@
                                     <form action="{{ route('blogs.likes.store',$blog->id) }}" method="POST">
                                         @csrf
                                         <div>
-                                            {{-- <input class="form-checkbox text-gray-500" type="checkbox" name="like" id="like" value="true"/> --}}
-                                            
                                             <button id="button" class="focus:outline-none focus:border-transparent">
+                                                @if(!$blog->isLiked())
                                                 <i class="far fa-heart fa-lg text-red-500 focus:outline-none"></i>
+                                                @else
+                                                <i class="fas fa-heart fa-lg text-red-500 focus:outline-none"></i>
+                                                @endif
                                             </button>
                                         </div>
                                     </form>
-                                        {{-- <i class="fas fa-heart fa-lg text-red-500"></i> --}}
                                 </span>
                             </div>
                             <a href="{{ url('read/' . $blog->id . '?comments=' . ($limit+5)) }}">
@@ -128,16 +128,6 @@
             <div class=" text-xl font-normal leading-normal mt-0 mb-2 text-gray-800 text-center whitespace-normal">
                 {{ $blog->body }}
             </div>
-            <div>
-            </div>
-        </x-app-layout>
- 
-        
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
-        $("#like").change(function (e) { 
-            $("#button").trigger('click');
-        });
-    });
-</script>
+        <div>
+    </div>
+</x-app-layout>
