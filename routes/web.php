@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,8 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/read/{blog}', [HomeController::class, 'show']);
-// Route::post('{blog}/comment/', [HomeController::class, 'comment']);
 Route::resource('blogs.comments', CommentController::class);
+Route::resource('blogs.likes', LikeController::class);
 
 
 Route::middleware('auth')->group(function () {

@@ -4,6 +4,7 @@
             <a href="/">{{ __('Blogs / ') }}</a>
             {{ $blog->title }} 
         </h2>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </x-slot>
     
     <div class="container my-12 mx-auto px-4 md:px-12">
@@ -76,15 +77,24 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </span>
-                                <span class=" mr-3 inline-flex items-center cursor-pointer">
-                                    <svg class="fill-heart text-gray-700 inline-block h-7 w-7 heart" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                    </svg>
+                                <span class=" mr-3 inline-flex items-center cursor-pointer focus:outline-none">
+                                    <form action="{{ route('blogs.likes.store',$blog->id) }}" method="POST">
+                                        @csrf
+                                        <div>
+                                            {{-- <input class="form-checkbox text-gray-500" type="checkbox" name="like" id="like" value="true"/> --}}
+                                            
+                                            <button id="button" class="focus:outline-none focus:border-transparent">
+                                                <i class="far fa-heart fa-lg text-red-500 focus:outline-none"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                        {{-- <i class="fas fa-heart fa-lg text-red-500"></i> --}}
                                 </span>
                             </div>
                             <a href="{{ url('read/' . $blog->id . '?comments=' . ($limit+5)) }}">
                                 <span class="text-gray-600 text-sm font-bold">
-                                    Load more
+                                    Load more   
+                                    <span class="text-purple-700 border-l-2 pl-2 border-gray-400">{{ count($likes)}}</span> {{' Likes'  }}
                                 </span>
                             </a>
                             <a href="{{ route('blogs.comments.index',$blog->id) }}">
@@ -121,3 +131,13 @@
             <div>
             </div>
         </x-app-layout>
+ 
+        
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("#like").change(function (e) { 
+            $("#button").trigger('click');
+        });
+    });
+</script>

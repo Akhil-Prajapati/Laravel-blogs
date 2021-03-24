@@ -17,6 +17,7 @@ class HomeController extends Controller
     {
         $limit = $request->has('comments')?$request->comments:5;
         $comments = $blog->comments()->latest()->take($limit)->get();
-        return view('blogs.blog',[ 'blog' => $blog, 'comments' => $comments, 'limit' => $limit ]);
+        $likes = $blog->likes()->get();
+        return view('blogs.blog',[ 'blog' => $blog, 'comments' => $comments, 'limit' => $limit , 'likes' => $likes]);
     }
 }
