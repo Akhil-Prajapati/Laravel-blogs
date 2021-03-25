@@ -44,7 +44,7 @@
                                             @endif
                                             @endif
                                         </div>
-                                        <span class="whitespace-nowrap text-sm">{{ $comment->created_at }} ago</span>
+                                        <span class="whitespace-nowrap text-sm">{{ $comment->created_at->diffForHumans() }}</span>
                                     </div>
                                     <div class="mt-2 text-gray-700">
                                         <p>{{ $comment->text }}</p>

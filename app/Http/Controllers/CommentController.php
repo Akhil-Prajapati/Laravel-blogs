@@ -100,9 +100,9 @@ class CommentController extends Controller
      */
     public function destroy(Blog $blog, Comment $comment)
     {
-        // dd($blog, $comment);
-        $comment->delete();
-        // Comment::find($id)->delete();
+        if(Auth::id() == $blog->user_id || Auth::id() == $comment->user_id ){
+            $comment->delete();
+        }
         return redirect()->back();
     }
 }

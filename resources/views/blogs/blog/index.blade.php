@@ -31,7 +31,7 @@
                             </a>
                         </h1>
                         <p class="text-grey-darker text-sm">
-                            {{ $blog->created_at }}
+                            {{ $blog->created_at->diffForHumans() }}
                         </p>
                     </header>
                     <main class="lex items-center justify-between leading-tight p-2 md:p-4">

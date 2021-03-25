@@ -8,11 +8,13 @@
     <!-- component -->
     <div class="container my-12 mx-auto px-4 md:px-12">
         @if(count($blogs) > 0)
-            @foreach ($blogs as $blog)
+            @foreach ($blogs as $key => $blog)
+            <div class="flex h-60 mt-5 flex-row">
+                <img src="https://picsum.photos/seed/{{ $key+5 }}/200/300" alt="" class="" >
                 <div class="max-w-md w-full lg:flex mb-5" style="display: contents;">
-                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url({{ $blog->url }})" title="Woman holding a mug">
-                    </div>
-                    <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    {{-- <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url({{ $blog->url }})" title="Woman holding a mug">
+                    </div> --}}
+                    <div class="border-r border-l-8 border-b w-full border-grey-700 border-opacity-60 lg:border-t lg:border-grey-700 bg-white rounded-b p-4 flex flex-col justify-between leading-normal">
                         <div class="mb-8">
                             {{-- <p class="text-sm text-grey-dark flex items-center">
                                 <svg class="text-grey w-3 h-3 mr-2" xmlns="{{ $blog->url }}" viewBox="0 0 20 20">
@@ -31,11 +33,12 @@
                             <img class="w-10 h-10 rounded-full mr-4" src="https://picsum.photos/32/32/?random" alt="Avatar of Jonathan Reinink">
                             <div class="text-sm">
                                 <p class="text-black leading-none">{{ $blog->user->name }}</p>
-                                <p class="text-grey-dark">{{ $blog->created_at }}</p>
+                                <p class="text-grey-dark">{{ $blog->created_at->diffForHumans() }}</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
+            </div>
             @endforeach
             @else
             <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">

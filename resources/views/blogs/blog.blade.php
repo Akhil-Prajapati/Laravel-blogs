@@ -27,13 +27,13 @@
                         </a>   
                     </header>
                     <div class="overflow-y-auto md:h-28 sm:h-10 lg:h-60">
-                    @foreach ($comments as $comment)
+                    @foreach ($comments as $key => $comment)
                         <div class="pt-1 pr-5">
                             <div class="text-sm mb-2 flex flex-start items-center">
                                 <div v-if="showUserImage">
                                     <a href="#" class="cursor-pointer flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                         <img class="h-8 w-8 rounded-full object-cover"
-                                        src="https://picsum.photos/32/28/?random"
+                                        src="https://picsum.photos/32/{{ $key+20 }}/?random"
                                         alt="user" />
                                     </a>
                                 </div>
@@ -103,7 +103,7 @@
                                 </span>
                             </a>
                         </div>
-                        <span class="block ml-2 text-xs text-gray-600">{{ $blog->created_at }}</span>
+                        <span class="block ml-2 text-xs text-gray-600">{{ $blog->created_at->diffForHumans() }}</span>
                         
                         <div class="pt-4 pb-1 pr-3">
                             <form action="{{ route('blogs.comments.store',$blog->id) }}" method="POST">
