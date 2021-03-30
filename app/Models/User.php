@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Blog;
 use App\Models\Comments;
 use App\Models\Like;
+use App\Models\Follower;
 
 class User extends Authenticatable
 {
@@ -56,6 +57,10 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+    public function follower()
+    {
+        return $this->hasMany(Follower::class);
     }
     
 }

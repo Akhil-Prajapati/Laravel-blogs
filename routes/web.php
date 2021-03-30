@@ -5,6 +5,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\FollowerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +27,7 @@ Route::resource('blogs.likes', LikeController::class);
 
 Route::middleware('auth')->group(function () {
     Route::resource('/blogs', BlogController::class);
+    Route::resource('/users', FollowerController::class);
 });
 
 Route::get('/dashboard', function () {
